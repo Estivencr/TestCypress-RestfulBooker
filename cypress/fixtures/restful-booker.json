@@ -1,0 +1,28 @@
+{
+  "credenciales": {
+    "username": "admin",
+    "password": "password123"
+  },
+  "reserva": {
+    "firstname": "Estiven",
+    "lastname": "QA",
+    "totalprice": 150,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2026-05-01",
+      "checkout": "2026-05-05"
+    },
+    "additionalneeds": "Breakfast"
+  },
+  "reservaActualizada": {
+    "firstname": "Estiven",
+    "lastname": "QA Senior",
+    "totalprice": 200,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2026-06-01",
+      "checkout": "2026-06-05"
+    },
+    "additionalneeds": "Dinner"
+  }
+}
