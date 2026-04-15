@@ -1,6 +1,6 @@
 describe('Restful Booker — CRUD completo', () => {
 
-  const API = 'https://restful-booker.herokuapp.com'
+  const API = Cypress.env('restfulBookerUrl')
   const authHeader = {
     Authorization: 'Basic ' + btoa('admin:password123')
   }
