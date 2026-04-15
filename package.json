@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "report:merge": "mochawesome-merge cypress/reports/mocha*.json > cypress/reports/report.json",
+    "report:generate": "mochawesome-report-generator cypress/reports/report.json"
   },
   "keywords": [],
   "author": "",
