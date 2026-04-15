@@ -1,0 +1,48 @@
+name: Cypress E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Crear archivo .env
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+          echo "RESTFUL_BOOKER_URL=${{ secrets.RESTFUL_BOOKER_URL }}" >> .env
+          echo "ADMIN_USER=${{ secrets.ADMIN_USER }}" >> .env
+          echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Correr tests Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          headed: false
+          install: false
+
+      - name: Mergear reportes JSON
+        if: always()
+        run: |
+          npm run report:merge
+          npm run report:generate
+
+      - name: Publicar reporte
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mochawesome-report
+          path: cypress/reports/report.html
